@@ -8,6 +8,7 @@ Example:
 """
 import sys
 import fire
+import csv
 import questionary
 from pathlib import Path
 
@@ -98,8 +99,26 @@ def find_qualifying_loans(bank_data, credit_score, debt, income, loan, home_valu
     bank_data_filtered = filter_loan_to_value(loan_to_value_ratio, bank_data_filtered)
 
     print(f"Found {len(bank_data_filtered)} qualifying loans")
+    
+    # added the print statement so I can double check the saved cvs has the same information
+    print(bank_data_filtered)
 
     return bank_data_filtered
+
+
+def save_csv(qualifying_loans):
+    """Saves the qualifying loans to a CSV file. 
+    
+    Args:
+        qualifying_loans (list of lists): The qualify bank loans.
+    """
+    header = ["Lender", "Max Loan Amount", "Max LTV", "Max DTI", "Min Credit Score", "Interest Rate"]
+    csvpath = Path("qualifying_loans.csv")
+    with open(csvpath, 'w', newline='') as csvfile:
+        csvwriter = csv.writer(csvfile, delimiter=",")
+        csvwriter.writerow(header)
+        for row in qualifying_loans:
+            csvwriter.writerow(row)
 
 
 def save_qualifying_loans(qualifying_loans):
@@ -109,7 +128,12 @@ def save_qualifying_loans(qualifying_loans):
         qualifying_loans (list of lists): The qualifying bank loans.
     """
     # @TODO: Complete the usability dialog for savings the CSV Files.
-    # YOUR CODE HERE!
+    save_as_csv = questionary.confirm("Would you like to save a copy as a .csv?").ask()
+    if save_as_csv == True:
+        save_csv(qualifying_loans)
+        print("The file has been saved!")
+    else:
+        sys.exit("Have a great day!")
 
 
 def run():
@@ -125,7 +149,7 @@ def run():
     qualifying_loans = find_qualifying_loans(
         bank_data, credit_score, debt, income, loan_amount, home_value
     )
-
+        
     # Save qualifying loans
     save_qualifying_loans(qualifying_loans)
 
