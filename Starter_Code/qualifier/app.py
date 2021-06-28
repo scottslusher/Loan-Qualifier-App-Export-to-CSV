@@ -35,7 +35,7 @@ def load_bank_data():
         The bank data from the data rate sheet CSV file.
     """
 
-    csvpath = questionary.text("Enter a file path to a rate-sheet (.csv):").ask()
+    csvpath = questionary.path("Enter a file path to a rate-sheet (.csv):").ask()
     csvpath = Path(csvpath)
     if not csvpath.exists():
         sys.exit(f"Oops! Can't find this path: {csvpath}")
@@ -113,14 +113,18 @@ def save_qualifying_loans(qualifying_loans):
         qualifying_loans (list of lists): The qualifying bank loans.
     """
     # @TODO: Complete the usability dialog for savings the CSV Files.
-    save_as_csv = questionary.confirm("Would you like to save a copy as a .csv?").ask()
-    # Since the .confirm() returns a boolean number,
-    # the if statement should take in a True / False value
-    if save_as_csv == True:
-        save_csv(qualifying_loans)
-        print("The file has been saved!")
+    ## The first line of defense. If there are 0 qualifying loans then give message and exit.
+    if len(qualifying_loans) == 0:
+        sys.exit("There are no qualifying loans based on the data provided. Have a nice day.")
+    ## If there are qualifying loans then start the process of saving the loan as csv
     else:
-        sys.exit("Have a great day!")
+        save_as_csv = questionary.confirm("Would you like to save a copy as a .csv?").ask()
+        # Since the .confirm() returns a boolean number the if statement should take a True / False value
+        if save_as_csv == True:
+            save_csv(qualifying_loans)
+            print("The file has been saved!")
+        else:
+            sys.exit("Have a great day!")
 
 
 def run():
