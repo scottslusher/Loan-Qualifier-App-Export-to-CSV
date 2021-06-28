@@ -100,9 +100,6 @@ def find_qualifying_loans(bank_data, credit_score, debt, income, loan, home_valu
 
     print(f"Found {len(bank_data_filtered)} qualifying loans")
     
-    # added the print statement so I can double check the saved cvs has the same information
-    print(bank_data_filtered)
-
     return bank_data_filtered
 
 
