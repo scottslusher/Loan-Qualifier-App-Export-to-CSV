@@ -4,8 +4,12 @@
 This contains a helper function for loading and saving CSV files.
 
 """
+import questionary
 import csv
 from pathlib import Path
+import sys
+
+from questionary import question
 
 def load_csv(csvpath):
     """Reads the CSV file from path provided.
@@ -35,11 +39,17 @@ def save_csv(qualifying_loans):
     
     Args:
         qualifying_loans (list of lists): The qualify bank loans.
+        
+    Returns:
+        A CSV file saved as "qualifying_loans.csv" that is located in the same
+        folder as the application that is running this code
     """
     # Set the output header
     header = ["Lender", "Max Loan Amount", "Max LTV", "Max DTI", "Min Credit Score", "Interest Rate"]
     # Created file path to save new csv as "qualifying_loans.csv"
-    csvpath = Path("qualifying_loans.csv")
+    file_path = questionary.path("Please provide file path to save csv file?").ask()
+    csvpath = Path(file_path)
+    
     # Opened the output CSV file path using 'with open'
     with open(csvpath, 'w', newline='') as csvfile:
         # Created a csv writer
@@ -49,3 +59,4 @@ def save_csv(qualifying_loans):
         # Took the value of each row of the list of lists and added its own row
         for row in qualifying_loans:
             csvwriter.writerow(row)
+    print(f"Saving file to file path {file_path}...")
