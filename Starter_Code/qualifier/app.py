@@ -65,7 +65,9 @@ def load_bank_data():
         csvpath = Path(csvpath)
         if not csvpath.exists():
             sys.exit(f"Oops! Can't find this path: {csvpath}")
-    return load_csv(csvpath)
+        return load_csv(csvpath)
+    else:
+        sys.exit("Try again when you are ready.")
 
 
 def get_applicant_info():
