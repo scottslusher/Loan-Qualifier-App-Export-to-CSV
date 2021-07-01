@@ -1,4 +1,5 @@
 # Import pathlib
+import csv
 from pathlib import Path
 
 #Import fileio
@@ -15,8 +16,14 @@ from qualifier.filters import debt_to_income
 from qualifier.filters import loan_to_value
 from qualifier.filters import max_loan_size
 
-#def test_save_csv():
-    # @TODO: Your code here!
+# def test_save_csv():
+#     # @TODO: Your code here!
+#     csvpath = Path("../data/output/qualifying_loans.csv")
+#     with open(csvpath, 'w', newline='') as csvfile:
+#         csvwriter = csv.writer(csvfile, delimiter=",")
+#         csvwriter.writerrow(header)
+#         for row in test_filters:
+#             csvwriter.writerow(row)
     # Use Path from pathlib to output the test csv to ./data/output/qualifying_loans.csv
 
 def test_calculate_monthly_debt_ratio():
@@ -38,4 +45,4 @@ def test_filters():
     loan_to_value_ratio = 0.84
 
     # @TODO: Test the new save_csv code!
-    # YOUR CODE HERE!
+    # test_save_csv()
