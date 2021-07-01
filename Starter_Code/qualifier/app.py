@@ -12,6 +12,8 @@ import csv
 import questionary
 from pathlib import Path
 
+from questionary import question
+
 from qualifier.utils.fileio import (
     load_csv,
     save_csv,
@@ -34,12 +36,35 @@ def load_bank_data():
     Returns:
         The bank data from the data rate sheet CSV file.
     """
-
-    csvpath = questionary.path("Enter a file path to a rate-sheet (.csv):").ask()
-    csvpath = Path(csvpath)
-    if not csvpath.exists():
-        sys.exit(f"Oops! Can't find this path: {csvpath}")
-
+    print("")
+    print("")
+    print("___________________________Loan Qualifier___________________________")
+    print("")
+    print("You are about to begin the Loan Qualifier App. There are 3 basic steps to complete the process:")
+    print("")
+    print("1. Provide a file path to import the data:")
+    print("")
+    print("     a. Begin typing the file folder name you would like to save your file in and 'tab' to autocomplete.")
+    print("     b. Start typing the name of the data file you are importing, and if the file exists in that folder you will be able to 'tab' to autocomplete.")
+    print("     c. Press ENTER twice to continue.")
+    print("")
+    print("2. Provide valid information to the loan qualification questions.")
+    print("")
+    print("3. Exporting available qualifying loans:")
+    print("")
+    print("     a. Confirm (Y) to Export qualifying loans into a .csv file to be further analyzed")
+    print("         i. You must provide a valid folder path by beginning to type the name of the folder and 'tab' to autocomplete.")
+    print("         ii. Provide a name you would like the file to be saved as.")
+    print("         iii. DON'T FORGET THE .CSV!!!!!")
+    print("")
+    print("     a. You may choose not to export the file and only view them in the CLI by selecting 'n' to the export question.")
+    print("_________________________________________________________________")
+    enter_loan_qualifier = questionary.confirm("Are you willing to meet the above criteria to complete the Loan Qualifier App?").ask()
+    if enter_loan_qualifier == True:
+        csvpath = questionary.path("Enter a file path to a rate-sheet (.csv):").ask()
+        csvpath = Path(csvpath)
+        if not csvpath.exists():
+            sys.exit(f"Oops! Can't find this path: {csvpath}")
     return load_csv(csvpath)
 
 
@@ -51,10 +76,23 @@ def get_applicant_info():
     """
 
     credit_score = questionary.text("What's your credit score?").ask()
-    debt = questionary.text("What's your current amount of monthly debt?").ask()
-    income = questionary.text("What's your total monthly income?").ask()
-    loan_amount = questionary.text("What's your desired loan amount?").ask()
-    home_value = questionary.text("What's your home value?").ask()
+    credit_score = int(credit_score)
+    if credit_score < 850 and credit_score > 300:
+        debt = questionary.text("What's your current amount of monthly debt?").ask()
+        income = questionary.text("What's your total monthly income?").ask()
+        loan_amount = questionary.text("What's your desired loan amount?").ask()
+        home_value = questionary.text("What's your home value?").ask()
+    else:
+        credit_score = questionary.text("Credit Scores range from 300 to 850. Please enter a valid credit score.").ask()
+        credit_score = int(credit_score)
+        if credit_score <= 850 and credit_score >= 300:
+            debt = questionary.text("What's your current amount of monthly debt?").ask()
+            income = questionary.text("What's your total monthly income?").ask()
+            loan_amount = questionary.text("What's your desired loan amount?").ask()
+            home_value = questionary.text("What's your home value?").ask()
+        else:
+            sys.exit("That is not a valid Credit Score. Please try again later.")
+   
 
     credit_score = int(credit_score)
     debt = float(debt)
@@ -122,9 +160,13 @@ def save_qualifying_loans(qualifying_loans):
         # Since the .confirm() returns a boolean number the if statement should take a True / False value
         if save_as_csv == True:
             save_csv(qualifying_loans)
-            print("The file has been saved!")
+            sys.exit("The file has been saved!")
         else:
-            sys.exit("Have a great day!")
+            view_loans = questionary.confirm("Would you like to view the qualifying loans?").ask()
+            if view_loans == True:
+                sys.exit(qualifying_loans)
+            else:
+                sys.exit("Have a great day!")
 
 
 def run():
