@@ -12,7 +12,7 @@ import csv
 import questionary
 from pathlib import Path
 
-from questionary import question
+
 
 from qualifier.utils.fileio import (
     load_csv,
