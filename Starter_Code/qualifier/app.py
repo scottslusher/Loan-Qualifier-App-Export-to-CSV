@@ -36,6 +36,7 @@ def load_bank_data():
     Returns:
         The bank data from the data rate sheet CSV file.
     """
+    # I have added simple instructions to help set the expectations in order to successfully complete the application
     print("")
     print("")
     print("___________________________Loan Qualifier___________________________")
@@ -57,15 +58,19 @@ def load_bank_data():
     print("         ii. Provide a name you would like the file to be saved as.")
     print("         iii. DON'T FORGET THE .CSV!!!!!")
     print("")
-    print("     a. You may choose not to export the file and only view them in the CLI by selecting 'n' to the export question.")
+    print("     b. You may choose not to export the file and only view them in the CLI by selecting 'n' to the export question.")
     print("_________________________________________________________________")
+    ## This is to insure the user has read all instructions before entering the application
     enter_loan_qualifier = questionary.confirm("Are you willing to meet the above criteria to complete the Loan Qualifier App?").ask()
     if enter_loan_qualifier == True:
+        # I decided to go with the questionary.path to make it a little more user friendly with the autocomplete 
         csvpath = questionary.path("Enter a file path to a rate-sheet (.csv):").ask()
         csvpath = Path(csvpath)
+        # This if statement is to check that the file path provided actually exists and there weren't any typos
         if not csvpath.exists():
             sys.exit(f"Oops! Can't find this path: {csvpath}")
         return load_csv(csvpath)
+    # This is a system exit if the user isn't ready to enter the application after reading the instructions    
     else:
         sys.exit("Try again when you are ready.")
 
@@ -76,22 +81,26 @@ def get_applicant_info():
     Returns:
         Returns the applicant's financial information.
     """
-
+    # Gathering the first bit of information that has to be within a certain range
     credit_score = questionary.text("What's your credit score?").ask()
     credit_score = int(credit_score)
+    # Checking to make sure the credit score is a valid score that ranges between 350 and 800
     if credit_score < 850 and credit_score > 300:
         debt = questionary.text("What's your current amount of monthly debt?").ask()
         income = questionary.text("What's your total monthly income?").ask()
         loan_amount = questionary.text("What's your desired loan amount?").ask()
         home_value = questionary.text("What's your home value?").ask()
+    # If the initial entry is not a valid credit score the user will receive a second prompt with further explaination.    
     else:
         credit_score = questionary.text("Credit Scores range from 300 to 850. Please enter a valid credit score.").ask()
         credit_score = int(credit_score)
         if credit_score <= 850 and credit_score >= 300:
+            # Apologies for the repetition of the code from above, but I could not find a way to save the questions as a function in a data_questions.py file in the utils folder and still have it return the data so it can be used in the next chain of the code
             debt = questionary.text("What's your current amount of monthly debt?").ask()
             income = questionary.text("What's your total monthly income?").ask()
             loan_amount = questionary.text("What's your desired loan amount?").ask()
             home_value = questionary.text("What's your home value?").ask()
+        # If after the second chance of entering a valid credit score the user is unsuccessful the system will exit and the user will have to start over.    
         else:
             sys.exit("That is not a valid Credit Score. Please try again later.")
    
@@ -158,11 +167,23 @@ def save_qualifying_loans(qualifying_loans):
         sys.exit("There are no qualifying loans based on the data provided. Have a nice day.")
     ## If there are qualifying loans then start the process of saving the loan as csv
     else:
+        # This is a yes/no prompt asking if the user would like to save the file
         save_as_csv = questionary.confirm("Would you like to save a copy as a .csv?").ask()
+        
         # Since the .confirm() returns a boolean number the if statement should take a True / False value
         if save_as_csv == True:
-            save_csv(qualifying_loans)
-            sys.exit("The file has been saved!")
+            # again I used questionary.path to make inputting a file path and "name".csv a little easier on the user instead of having to remember to "../../" into parent folders
+            file_path = questionary.path("Please provide file path to save csv file?").ask()
+            csvpath = Path(file_path)
+            # If somehow the user does not enter a valid file path the program will simply print the results in the CLI
+            if file_path == False:
+                print(qualifying_loans)
+            # If the file_path is valid then the save_csv function will save the file to that path and print and exit
+            else:
+                save_csv(qualifying_loans, csvpath)
+                print(f"Saving file to file path {file_path}...")
+                sys.exit("The file has been saved!")
+        # If the user does not want to save the file to a .csv then they will have a second option to view the loans in the CLI        
         else:
             view_loans = questionary.confirm("Would you like to view the qualifying loans?").ask()
             if view_loans == True:
