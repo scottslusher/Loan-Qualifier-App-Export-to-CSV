@@ -52,7 +52,7 @@ The app will prompt the user of the following information:
 
 After those statistics the app will ask the user if they would like to "save a copy as a .csv?". 
 
-If the user selects "Y" they will be asked to provide the file path to the folder they would like to save the file in. The path can be found similar to how the first path was found at the beginning of the app. Simply begin typing the folder name and an autocomplete prompt should appear below, TAB to autocomplete. Once you have reached the folder you would like to save the CSV file to; name your file with ".csv" at the end. Remember to replace and spaces with an underscore "_" so there won't be any errors. 
+If the user selects "Y" they will be asked to provide the file path to the folder they would like to save the file in. The path can be found by typing the folder name and an autocomplete prompt should appear below, TAB to autocomplete. Once you have reached the folder you would like to save the CSV file to; name your file with ".csv" at the end. Remember to replace and spaces with an underscore "_" so there won't be any errors. Again, you will need to ENTER twice to move on.
 
 
 
