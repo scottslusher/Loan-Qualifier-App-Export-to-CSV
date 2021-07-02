@@ -1,2 +1,2 @@
 # Loan-Qualifier-App-Export-to-CSV
-![picture](Starter_Code\qualifier\picture\loan_image.png)
+![picture](https://courses.bootcampspot.com/courses/710/files/676472/download)
