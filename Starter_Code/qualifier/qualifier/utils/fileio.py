@@ -35,33 +35,28 @@ def load_csv(csvpath):
     return data
 
 
-def save_csv(qualifying_loans):
+def save_csv(qualifying_loans, csvpath):
     """Saves the qualifying loans to a CSV file. 
     
     Args:
         qualifying_loans (list of lists): The qualified bank loans.
+        csvpath: A direct path to save the file into 
         
     Returns:
-        A CSV file saved as "qualifying_loans.csv" that is located in the same
-        folder as the application that is running this code
+        A CSV file saved as whatever name the user inputs that is located in
+        the folder the user inputs
     """
     # Set the output header
     header = ["Lender", "Max Loan Amount", "Max LTV", "Max DTI", "Min Credit Score", "Interest Rate"]
     
-    # Created file path to save new csv as "qualifying_loans.csv"
-    file_path = questionary.path("Please provide file path to save csv file?").ask()
-    csvpath = Path(file_path)
-
-    if file_path == False:
-        print(qualifying_loans)
-    else:
     # Opened the output CSV file path using 'with open'
-        with open(csvpath, 'w', newline='') as csvfile:
-            # Created a csv writer
-            csvwriter = csv.writer(csvfile, delimiter=",")
-            # Wrote the header to the CSV file
-            csvwriter.writerow(header)
-            # Took the value of each row of the list of lists and added its own row
-            for row in qualifying_loans:
-                csvwriter.writerow(row)
-        print(f"Saving file to file path {file_path}...")
+    with open(csvpath, 'w', newline='') as csvfile:
+        # Created a csv writer
+        csvwriter = csv.writer(csvfile, delimiter=",")
+        # Wrote the header to the CSV file
+        csvwriter.writerow(header)
+        # Took the value of each row of the list of lists and added its own row
+        for row in qualifying_loans:
+            csvwriter.writerow(row)
+    
+    
