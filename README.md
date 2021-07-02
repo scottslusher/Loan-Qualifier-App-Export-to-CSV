@@ -11,20 +11,37 @@ Welcome to my repository for the Loan Qualifier App Export to CSV (LQExport). Th
 
 ## Technologies
 
+This project leverages python 3.7 with the following packages:
+
+*[fire](Starter_Code/qualifier/tests/requirements.txt) - For the command line interface, help page, and entry-points
+
+*[questionary](Starter_Code/qualifier/tests/requirements.txt) - For interactive user prompts and dialogs
+
+*[pytest](Starter_Code/qualifier/tests/requirements.txt) - For testing and debugging the application
 
 ---
 
 ## Installation Guide
 
+Before running the application first install the following dependencies.
+
+[requirements](Starter_Code/qualifier/tests/requirements.txt)
+
+```python
+pip install fire
+pip install questionary
+pip install pytest
+```
 ---
 
 ## Usage with Examples
 
-To use the LQExport application you must have your data saved in a folder path easily accessible and in a .csv format. 
+To use the **LQExport** application you **must have your data saved in a folder path easily accessible and in a .csv format**. 
 
-To launch the program simply clone the repository and run app.py
-`python app.py
-
+To launch the program simply clone the repository and run the **app.py** program.
+```python
+python app.py
+```
 You will be greated with a new set of initial directions to refresh the users memory of how the application operates. 
 
 ![picture](Starter_Code/qualifier/picture/initial_instructions.png)
@@ -41,19 +58,19 @@ The next steps require data entry specific to the questions asked.
 
 ![data_entry](https://user-images.githubusercontent.com/81820892/124323669-54fd9d00-db47-11eb-8a08-2eff61143cca.gif)
 
-The app will prompt the user of the following information:
+The app will update the user on the following calculations and information:
 
-*The monthly debt to income ratio*
-*The loan to value ratio*
-*How many loans they qualify for*
+*The monthly debt to income ratio
+*The loan to value ratio
+*How many loans they qualify for
 
 After those statistics the app will ask the user if they would like to "save a copy as a .csv?". 
 
-If the user selects "Y" they will be asked to provide the file path to the folder they would like to save the file in. The path can be found by typing the folder name and an autocomplete prompt should appear below, TAB to autocomplete. Once you have reached the folder you would like to save the CSV file to; name your file with ".csv" at the end. Remember to replace and spaces with an underscore "_" so there won't be any errors. **Again, you will need to ENTER twice to move on.**
+**If the user selects "Y"** they will be asked to provide the file path to the folder they would like to save the file in. The path can be found by typing the folder name and an autocomplete prompt should appear below, TAB to autocomplete. Once you have reached the folder you would like to save the CSV file to; name your file with ".csv" at the end. Remember to replace and spaces with an underscore "_" so there won't be any errors. **Again, you will need to ENTER twice to move on.**
 
 ![save_data](https://user-images.githubusercontent.com/81820892/124323693-5b8c1480-db47-11eb-8e7f-befa0af6f79b.gif)
 
-If the user select "n" they will receive a second prompt asking if they would like to view the list of loans in the CLI. 
+**If the user select "n"** they will receive a second prompt asking if they would like to view the list of loans in the CLI. 
 
 *If they select "Y" a list will appear within the CLI and the system will exit.*
 
