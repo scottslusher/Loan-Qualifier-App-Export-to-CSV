@@ -39,7 +39,7 @@ def save_csv(qualifying_loans):
     """Saves the qualifying loans to a CSV file. 
     
     Args:
-        qualifying_loans (list of lists): The qualify bank loans.
+        qualifying_loans (list of lists): The qualified bank loans.
         
     Returns:
         A CSV file saved as "qualifying_loans.csv" that is located in the same
