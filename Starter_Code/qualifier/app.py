@@ -188,6 +188,10 @@ def run():
     # Save qualifying loans
     save_qualifying_loans(qualifying_loans)
 
+    
+
+
+
 
 if __name__ == "__main__":
     fire.Fire(run)
