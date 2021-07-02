@@ -43,7 +43,7 @@ Once you have completed entering in your file path you must hit ENTER twice in o
 
 The next steps require data entry specific to the questions asked. 
 
-
+![data_entry](https://user-images.githubusercontent.com/81820892/124323669-54fd9d00-db47-11eb-8a08-2eff61143cca.gif)
 
 The app will prompt the user of the following information:
     The monthly debt to income ratio
@@ -54,8 +54,7 @@ After those statistics the app will ask the user if they would like to "save a c
 
 If the user selects "Y" they will be asked to provide the file path to the folder they would like to save the file in. The path can be found by typing the folder name and an autocomplete prompt should appear below, TAB to autocomplete. Once you have reached the folder you would like to save the CSV file to; name your file with ".csv" at the end. Remember to replace and spaces with an underscore "_" so there won't be any errors. Again, you will need to ENTER twice to move on.
 
-
-
+![save_data](https://user-images.githubusercontent.com/81820892/124323693-5b8c1480-db47-11eb-8e7f-befa0af6f79b.gif)
 
 If the user select "n" they will receive a second prompt asking if they would like to view the list of loans in the CLI. 
     If they select "Y" a list will appear within the CLI and the system will exit.
