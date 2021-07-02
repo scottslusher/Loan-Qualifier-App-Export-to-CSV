@@ -13,11 +13,11 @@ Welcome to my repository for the Loan Qualifier App Export to CSV (LQExport). Th
 
 This project leverages python 3.7 with the following packages:
 
-*[fire](Starter_Code/qualifier/tests/requirements.txt) - For the command line interface, help page, and entry-points
+* [fire](Starter_Code/qualifier/tests/requirements.txt) - For the command line interface, help page, and entry-points
 
-*[questionary](Starter_Code/qualifier/tests/requirements.txt) - For interactive user prompts and dialogs
+* [questionary](Starter_Code/qualifier/tests/requirements.txt) - For interactive user prompts and dialogs
 
-*[pytest](Starter_Code/qualifier/tests/requirements.txt) - For testing and debugging the application
+* [pytest](Starter_Code/qualifier/tests/requirements.txt) - For testing and debugging the application
 
 ---
 
@@ -60,9 +60,11 @@ The next steps require data entry specific to the questions asked.
 
 The app will update the user on the following calculations and information:
 
-*The monthly debt to income ratio
-*The loan to value ratio
-*How many loans they qualify for
+* The monthly debt to income ratio
+
+* The loan to value ratio
+
+* How many loans they qualify for
 
 After those statistics the app will ask the user if they would like to "save a copy as a .csv?". 
 
@@ -72,11 +74,11 @@ After those statistics the app will ask the user if they would like to "save a c
 
 **If the user select "n"** they will receive a second prompt asking if they would like to view the list of loans in the CLI. 
 
-*If they select "Y" a list will appear within the CLI and the system will exit.*
+* If they select "Y" a list will appear within the CLI and the system will exit.*
 
 ![no_save_but_view](https://user-images.githubusercontent.com/81820892/124325084-aeff6200-db49-11eb-8563-275c1dbfd846.gif)
 
-*If they select "n" the program will tell them to have a nice day and exit.*
+* If they select "n" the program will tell them to have a nice day and exit.*
 
 ![do_not_save_data](https://user-images.githubusercontent.com/81820892/124325127-c2aac880-db49-11eb-89e4-5a387e5ff29f.gif)
 
@@ -84,7 +86,10 @@ After those statistics the app will ask the user if they would like to "save a c
 
 ## Contributors
 
-Brought to you by Rice FinTech Boot Camp students
+Brought to you by Rice FinTech Boot Camp student
+
+Scott Slusher
+scottslusher22@gmail.com
 
 ---
 
