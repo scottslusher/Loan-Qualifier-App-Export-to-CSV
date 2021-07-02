@@ -57,9 +57,11 @@ If the user select "n" they will receive a second prompt asking if they would li
 
 *If they select "Y" a list will appear within the CLI and the system will exit.*
 
-
+![no_save_but_view](https://user-images.githubusercontent.com/81820892/124325084-aeff6200-db49-11eb-8563-275c1dbfd846.gif)
 
 *If they select "n" the program will tell them to have a nice day and exit.*
+
+![do_not_save_data](https://user-images.githubusercontent.com/81820892/124325127-c2aac880-db49-11eb-89e4-5a387e5ff29f.gif)
 
 ---
 
