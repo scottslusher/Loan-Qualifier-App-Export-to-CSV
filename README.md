@@ -1,2 +1,2 @@
 # Loan-Qualifier-App-Export-to-CSV
-![picture](loan_image.png)
+![picture](picture/loan_image.png)
