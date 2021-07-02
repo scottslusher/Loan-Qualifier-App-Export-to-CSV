@@ -88,8 +88,8 @@ After those statistics the app will ask the user if they would like to "save a c
 
 Brought to you by Rice FinTech Boot Camp student
 
-Scott Slusher
-scottslusher22@gmail.com
+* Scott Slusher
+* scottslusher22@gmail.com
 
 ---
 
