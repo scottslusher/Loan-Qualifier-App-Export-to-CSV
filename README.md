@@ -35,7 +35,7 @@ You will be greated with a new set of initial directions to refresh the users me
 
 Once the user has read and accepted the instructions the app will ask for a file path to the csv file that holds the bank information the user would like to filter. 
 
-![picture](Starter_Code/qualifier/picture/file_path_entry.mp4)
+https://user-images.githubusercontent.com/81820892/124320846-4365c680-db42-11eb-8a75-0770c3f17719.mp4
 
 As shown in the clip above: When inputing your file path just begin typing the name of the folder ("da") and you should notice a 'data' autocomplete request under the letters. If this is the correct folder you can hit TAB to complete the name. Same can be done for the name of the csv file.
 
