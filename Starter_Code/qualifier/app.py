@@ -88,11 +88,13 @@ def get_applicant_info():
     if credit_score < 850 and credit_score > 300:
         debt = questionary.text("What's your current amount of monthly debt?").ask()
         income = questionary.text("What's your total monthly income?").ask()
+        # Added fail safes in case the user has a typo and does not input enough zeros to the income
         if int(income) < int(debt):
             income = questionary.text("WARNING: The income you entered is less than the monthly debt. Please enter a valid income greater than the debt.").ask()
         
         loan_amount = questionary.text("What's your desired loan amount?").ask()
         home_value = questionary.text("What's your home value?").ask()
+        # if the home value is not greater than the loan value then no bank will qualify the user. Therefore this is a fail safe to insure the home value is greater than the loan amount and not just a typo
         if int(home_value) < int(loan_amount):
             home_value = questionary.text("WARNING: The home value you entered is less than the requested loan amount. Please enter a home value that is larger than the loam amount.").ask()
         
@@ -104,10 +106,12 @@ def get_applicant_info():
             # Apologies for the repetition of the code from above, but I could not find a way to save the questions as a function in a data_questions.py file in the utils folder and still have it return the data so it can be used in the next chain of the code
             debt = questionary.text("What's your current amount of monthly debt?").ask()
             income = questionary.text("What's your total monthly income?").ask()
+            # Added fail safes in case the user has a typo and does not input enough zeros to the income
             if int(income) < int(debt):
                 income = questionary.text("WARNING: The income you entered is less than the monthly debt. Please enter a valid income greater than the debt.").ask()
             loan_amount = questionary.text("What's your desired loan amount?").ask()
             home_value = questionary.text("What's your home value?").ask()
+            # if the home value is not greater than the loan value then no bank will qualify the user. Therefore this is a fail safe to insure the home value is greater than the loan amount and not just a typo
             if int(home_value) < int(loan_amount):
                 home_value = questionary.text("WARNING: The home value you entered is less than the requested loan amount. Please enter a home value that is larger than the loam amount.").ask()
             
@@ -188,6 +192,7 @@ def save_qualifying_loans(qualifying_loans):
             csvpath = Path(file_path)
             # If somehow the user does not enter a valid file path the program will simply print the results in the CLI
             if file_path == False:
+                # This will print the lists separated with a line break to make it easier to read
                 print(*qualifying_loans, sep="\n")
                 sys.exit()
             # If the file_path is valid then the save_csv function will save the file to that path and print and exit
@@ -199,6 +204,7 @@ def save_qualifying_loans(qualifying_loans):
         else:
             view_loans = questionary.confirm("Would you like to view the qualifying loans?").ask()
             if view_loans == True:
+                # This will print the lists separated with a line break to make it easier to read
                 print(*qualifying_loans, sep="\n")
                 sys.exit()
             else:
