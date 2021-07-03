@@ -88,8 +88,14 @@ def get_applicant_info():
     if credit_score < 850 and credit_score > 300:
         debt = questionary.text("What's your current amount of monthly debt?").ask()
         income = questionary.text("What's your total monthly income?").ask()
+        if int(income) < int(debt):
+            income = questionary.text("WARNING: The income you entered is less than the monthly debt. Please enter a valid income greater than the debt.").ask()
+        
         loan_amount = questionary.text("What's your desired loan amount?").ask()
         home_value = questionary.text("What's your home value?").ask()
+        if int(home_value) < int(loan_amount):
+            home_value = questionary.text("WARNING: The home value you entered is less than the requested loan amount. Please enter a home value that is larger than the loam amount.").ask()
+        
     # If the initial entry is not a valid credit score the user will receive a second prompt with further explaination.    
     else:
         credit_score = questionary.text("Credit Scores range from 300 to 850. Please enter a valid credit score.").ask()
@@ -98,8 +104,13 @@ def get_applicant_info():
             # Apologies for the repetition of the code from above, but I could not find a way to save the questions as a function in a data_questions.py file in the utils folder and still have it return the data so it can be used in the next chain of the code
             debt = questionary.text("What's your current amount of monthly debt?").ask()
             income = questionary.text("What's your total monthly income?").ask()
+            if int(income) < int(debt):
+                income = questionary.text("WARNING: The income you entered is less than the monthly debt. Please enter a valid income greater than the debt.").ask()
             loan_amount = questionary.text("What's your desired loan amount?").ask()
             home_value = questionary.text("What's your home value?").ask()
+            if int(home_value) < int(loan_amount):
+                home_value = questionary.text("WARNING: The home value you entered is less than the requested loan amount. Please enter a home value that is larger than the loam amount.").ask()
+            
         # If after the second chance of entering a valid credit score the user is unsuccessful the system will exit and the user will have to start over.    
         else:
             sys.exit("That is not a valid Credit Score. Please try again later.")
@@ -177,7 +188,8 @@ def save_qualifying_loans(qualifying_loans):
             csvpath = Path(file_path)
             # If somehow the user does not enter a valid file path the program will simply print the results in the CLI
             if file_path == False:
-                print(qualifying_loans)
+                print(*qualifying_loans, sep="\n")
+                sys.exit()
             # If the file_path is valid then the save_csv function will save the file to that path and print and exit
             else:
                 save_csv(qualifying_loans, csvpath)
@@ -187,7 +199,8 @@ def save_qualifying_loans(qualifying_loans):
         else:
             view_loans = questionary.confirm("Would you like to view the qualifying loans?").ask()
             if view_loans == True:
-                sys.exit(qualifying_loans)
+                print(*qualifying_loans, sep="\n")
+                sys.exit()
             else:
                 sys.exit("Have a great day!")
 
