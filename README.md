@@ -1,6 +1,7 @@
 # Loan Qualifier App Export to CSV (LQExport)
 ---
 ![picture](Starter_Code/qualifier/picture/loan_image.png)
+
 ---
 
 ## Loan Qualifier App Export to CSV (LQExport)

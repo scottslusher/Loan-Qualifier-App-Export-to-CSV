@@ -16,7 +16,7 @@ def filter_credit_score(credit_score, bank_list):
     Returns:
         A list of qualifying bank loans.
     """
-
+#test
     credit_score_approval_list = []
     for bank in bank_list:
         if credit_score >= int(bank[4]):
